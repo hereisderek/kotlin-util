@@ -2,8 +2,6 @@ package top.derekdev.kotlinutil.collection
 
 import kotlin.test.BeforeTest
 import kotlin.test.Test
-import kotlin.test.assertTrue
-import top.derekdev.kotlinutil.collection.*
 import kotlin.test.assertEquals
 
 /**

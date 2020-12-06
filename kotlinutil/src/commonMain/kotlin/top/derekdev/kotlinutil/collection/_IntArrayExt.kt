@@ -8,7 +8,7 @@ import kotlin.jvm.JvmName
  **/
 
 typealias IntArray2D = Array<IntArray>
-typealias ListOfIntArray = List<IntArray>
+typealias ListOfIntArray = Iterable<IntArray>
 
 
 
@@ -50,4 +50,8 @@ fun Iterable<IntArray>.toIntString(
 fun IntArray2D.toIntString(
     separator: CharSequence = ",", prefix: CharSequence = "[", postfix: CharSequence = "]", limit: Int = -1, truncated: CharSequence = "...", innerTransform: ((Int) -> CharSequence)? = null
 ) = joinToString(separator, prefix, postfix, limit, truncated){ it.toIntString(separator, prefix, postfix, limit, truncated, innerTransform) }
+
+
+
+/// conversions from IntString (String) to Int Array
 
