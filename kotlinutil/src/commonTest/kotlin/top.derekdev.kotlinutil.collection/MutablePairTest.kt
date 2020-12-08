@@ -1,8 +1,10 @@
 package top.derekdev.kotlinutil.collection
 
 
-import top.derekdev.kotlinutil.collection.*
-import kotlin.test.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertNotSame
 
 /*
  *
@@ -45,9 +47,11 @@ class MutablePairTest {
         assertEquals(1, snapShot1.first)
         assertEquals("a", snapShot1.second)
         val snapShot2 = pair.snapshot
+        val snapShot3 = pair.snapshot
 
-        assertNotEquals(pair, snapShot2)
         assertNotEquals(snapShot1, snapShot2)
+        assertEquals(snapShot2, snapShot3)
+        assertNotSame(snapShot2, snapShot3)
         assertEquals(3, snapShot2.first)
         assertEquals("b", snapShot2.second)
     }

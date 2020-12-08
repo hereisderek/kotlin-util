@@ -8,9 +8,8 @@ package top.derekdev.kotlinutil.collection
 interface MutablePair<A, B> {
     var first: A
     var second: B
-    val snapshot: Pair<A, B>
+    val snapshot: Pair<A, B> get() = Pair(first, second)
 
-    fun clearSnapshot()
     fun use(usage: ((first: A, second: B) -> Unit)) = usage.invoke(first, second)
     fun useSelf(usage: (MutablePair<A, B>.(first: A, second: B) -> Unit)) = usage.invoke(this, first, second)
     fun set(first: A, second: B){
@@ -22,26 +21,7 @@ interface MutablePair<A, B> {
 fun <A, B> mutablePairOf(first: A, second: B) : MutablePair<A, B> = MutablePairImpl(first, second)
 
 
-open class MutablePairImpl<A, B> (first: A, second: B) : MutablePair<A, B> {
-    private var _snapshot: Pair<A, B>? = null
-
-    override var first: A = first; set(value) {
-        field = value
-        clearSnapshot()
-    }
-    override var second: B = second; set(value) {
-        field = value
-        clearSnapshot()
-    }
-
-    override val snapshot: Pair<A, B> get() = getSnapShot()
-
-    private fun getSnapShot() : Pair<A, B> =  (_snapshot /*as? Pair<A, B>?*/) ?: Pair(first, second)
-
-    override fun clearSnapshot() {
-        _snapshot = null
-    }
-}
+data class MutablePairImpl<A, B> (override var first: A, override var second: B) : MutablePair<A, B>//, Serializable
 
 
 

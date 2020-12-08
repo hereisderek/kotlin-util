@@ -17,7 +17,7 @@ package top.derekdev.kotlinutil.collection
  */
 inline fun <K, V, R, C : MutableCollection<in R>> Map<out K, V>.flatMapTo(
     destination: C,
-    byKey: Iterable<out K>? = null,
+    byKey: Iterable<K>? = null,
     transform: (Map.Entry<K, V>) -> Iterable<R>
 ): C {
     this.flatMap(transform)
@@ -43,7 +43,7 @@ inline fun <K, V, R, C : MutableCollection<in R>> Map<out K, V>.flatMapTo(
 
 
 inline fun <K, V, R> Map<out K, V>.flatMap(
-    byKey: Iterable<out K>? = null,
+    byKey: Iterable<K>? = null,
     transform: (Map.Entry<K, V>) -> Iterable<R>
 ) : List<R> = flatMapTo(ArrayList<R>(), byKey, transform)
 
@@ -75,6 +75,8 @@ inline fun <K, V, R> Map<out K, V>.flatMap(
     comparator: Comparator<in Map.Entry<K, V>>,
     crossinline transform: (Map.Entry<K, V>) -> Iterable<R>
 ): Iterable<R> = flatMapTo(ArrayList<R>(), comparator, transform)
+
+
 
 
 
