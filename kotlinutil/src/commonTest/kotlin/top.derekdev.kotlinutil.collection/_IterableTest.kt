@@ -52,7 +52,7 @@ internal class _IterableTest {
             result2.add("$a$b")
         }
         val expected = listOf("1a", "2b", "3c")
-        assertEquals(expected, result1)
+        assertEquals(expected, result1, )
         assertEquals(expected, result2)
     }
 
@@ -85,6 +85,18 @@ internal class _IterableTest {
         assertTrue(result3.isEmpty())
     }
 
+
+    @Test
+    fun `MutableList_addIfNotContain`() {
+        val list = mutableListOf("a", "b", "c")
+        assertEquals(list.size, 3)
+        list.addIfNotContain("d")
+        assertEquals(list.size, 4)
+        assertEquals(list, listOf("a", "b", "c", "d"))
+        list.addIfNotContain("a")
+        assertEquals(list.size, 4)
+        assertEquals(list, listOf("a", "b", "c", "d"))
+    }
 
 
 }

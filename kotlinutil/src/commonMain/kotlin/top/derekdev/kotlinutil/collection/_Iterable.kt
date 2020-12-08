@@ -49,7 +49,10 @@ inline fun <K, V, R> Iterable<K>.mergeMap(other: Iterable<V>, into: MutableList<
 }
 
 
-///
+/// MutableList
+/**
+ * add item @param [obj] into the list, skip if already added
+ */
 fun <T> MutableList<T>.addIfNotContain(obj: T) : Boolean = if (!contains(obj)) add(obj) else false
 
 
